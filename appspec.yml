@@ -2,9 +2,12 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /usr/share/nginx/html/${DEPLOYMENT_ID}/
+    destination: /var/tmp/myapp
 hooks:
   AfterInstall:
+    - location: scripts/deploy_app_directory.sh
+      timeout: 300
+      runas: root
     - location: scripts/change_permissions.sh
       timeout: 300
       runas: root
